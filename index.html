@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'YOUR_GA_ID'); // REPLACE 'YOUR_GA_ID' with your real ID
+      gtag('config', 'G-XXXXXXXXXX');
     </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignalWrite | Precision AI Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Instrument+Serif:ital@0;1&display=swap');
+        
         :root { --accent: #6366f1; }
-        body.light { background: #f8fafc; color: #0f172a; }
-        body.dark { background: #020617; color: #f8fafc; }
+        
+        /* Automatic Theme Detection */
+        @media (prefers-color-scheme: dark) {
+            body { background: #020617; color: #f8fafc; }
+            .bento-panel { background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255,255,255,0.05); }
+        }
+        @media (prefers-color-scheme: light) {
+            body { background: #f8fafc; color: #0f172a; }
+            .bento-panel { background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.05); }
+        }
+
+        /* Manual Overrides */
+        body.light-mode { background: #f8fafc !important; color: #0f172a !important; }
+        body.light-mode .bento-panel { background: rgba(255,255,255,0.8) !important; border: 1px solid rgba(0,0,0,0.05) !important; }
+        
+        body.dark-mode { background: #020617 !important; color: #f8fafc !important; }
+        body.dark-mode .bento-panel { background: rgba(30, 41, 59, 0.4) !important; border: 1px solid rgba(255,255,255,0.05) !important; }
+
         .serif { font-family: 'Instrument Serif', serif; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.5s ease; }
-        .bento-panel { background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.05); backdrop-filter: blur(10px); border-radius: 32px; }
-        .dark .bento-panel { background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255,255,255,0.05); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.4s ease; }
+        .bento-panel { backdrop-filter: blur(12px); border-radius: 32px; }
+        
         .newsletter-pop { transform: translateY(100px); opacity: 0; transition: 0.8s ease; visibility: hidden; }
         .newsletter-pop.active { transform: translateY(0); opacity: 1; visibility: visible; }
-        .page { display: none; }
-        .page.active { display: block; }
     </style>
 </head>
-<body class="light min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col">
 
     <div id="newsletter" class="newsletter-pop fixed bottom-8 right-8 z-[100] max-w-sm w-full p-8 bento-panel shadow-2xl">
-        <button onclick="closeNewsletter()" class="absolute top-4 right-4 text-slate-400">&times;</button>
+        <button onclick="closeNewsletter()" class="absolute top-4 right-4 text-slate-400 text-xl">&times;</button>
         <h4 class="serif text-2xl mb-2">Join the Signal</h4>
-        <p class="text-xs text-slate-500 mb-4">New templates and AI updates.</p>
+        <p class="text-xs text-slate-500 mb-4">Minimal updates for serious writers.</p>
         <div class="flex gap-2">
             <input type="email" placeholder="your@email.com" class="flex-1 bg-black/5 dark:bg-white/5 border border-black/10 rounded-xl px-4 py-2 text-xs outline-none">
             <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold">Join</button>
@@ -41,165 +55,179 @@
     </div>
 
     <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto w-full">
-        <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('studio')">
-            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">S</div>
-            <h1 class="text-xl font-800 tracking-tighter">SIGNALWRITE</h1>
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-500/30">S</div>
+            <h1 class="text-xl font-800 tracking-tighter uppercase">SignalWrite</h1>
         </div>
-        <div class="flex items-center gap-4 md:gap-8">
-            <button onclick="toggleModal('help-modal')" class="text-[10px] font-800 uppercase tracking-widest text-indigo-600">Help / Setup</button>
-            <button onclick="toggleTheme()" id="themeBtn" class="hidden md:block text-[10px] font-800 tracking-widest uppercase opacity-50">Dark Mode</button>
-            <button onclick="toggleModal('settings')" class="bg-indigo-600 text-white px-5 py-2 rounded-full text-xs font-bold">API KEY</button>
+        <div class="flex items-center gap-4">
+            <button onclick="toggleTheme()" class="p-2 opacity-50 hover:opacity-100 transition">🌓</button>
+            <button onclick="toggleModal('help-modal')" class="hidden md:block text-[10px] font-800 uppercase tracking-widest text-indigo-600">Help Guide</button>
+            <button onclick="toggleModal('settings')" class="bg-indigo-600 text-white px-6 py-2 rounded-full text-xs font-bold hover:scale-105 transition">API ACCESS</button>
         </div>
     </nav>
 
-    <main id="page-studio" class="page active flex-grow max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-4 gap-8 p-6">
+    <main class="flex-grow max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-4 gap-8 p-6">
         
         <aside class="space-y-6">
             <div class="bento-panel p-6">
-                <label class="text-[10px] font-800 text-slate-400 uppercase tracking-widest mb-4 block">Primary Purpose</label>
-                <div class="flex flex-col gap-2">
-                    <button id="btn-creative" onclick="setPurpose('creative')" class="purpose-btn bg-indigo-600 text-white py-3 rounded-xl text-xs font-bold">Creative Studio</button>
-                    <button id="btn-anxiety" onclick="setPurpose('anxiety')" class="purpose-btn border border-black/10 py-3 rounded-xl text-xs font-bold">Anxiety Relief</button>
-                </div>
+                <label class="text-[10px] font-800 text-slate-400 uppercase tracking-widest mb-4 block">Refinement Type</label>
+                <select id="mode" class="w-full bg-transparent border-b border-indigo-500/20 py-2 outline-none text-sm font-semibold mb-4 cursor-pointer">
+                    <option value="professional">🚀 Business / Pro</option>
+                    <option value="anxiety">🌿 Anxiety Neutralizer (Calm)</option>
+                    <option value="novel">📖 Creative / Novel</option>
+                    <option value="social">🐦 Social / Viral</option>
+                </select>
+                <p class="text-[10px] text-slate-500 leading-tight">Choose 'Anxiety Neutralizer' to soften difficult texts and reduce stress in communication.</p>
             </div>
 
             <div class="bento-panel p-6">
-                <label class="text-[10px] font-800 text-slate-400 uppercase tracking-widest mb-4 block">Writing Format</label>
-                <select id="mode" class="w-full bg-transparent border-b border-indigo-500/20 py-2 outline-none text-sm font-semibold">
-                    <option value="novel">📖 Novel / Story</option>
-                    <option value="article">📰 Journalism / Article</option>
-                    <option value="letter">✉️ Formal Letter</option>
-                    <option value="email">📧 Difficult Email</option>
-                </select>
+                <h3 class="text-[10px] font-800 text-slate-400 uppercase tracking-widest mb-4">Document Stats</h3>
+                <div class="flex justify-between items-center">
+                    <span class="text-xs">Words</span>
+                    <span id="wordCount" class="font-bold text-indigo-500">0</span>
+                </div>
             </div>
         </aside>
 
         <div class="lg:col-span-3 flex flex-col gap-6">
             <div class="bento-panel p-10 flex-grow shadow-sm">
-                <input type="text" id="docTitle" placeholder="Document Title..." class="serif text-4xl w-full bg-transparent outline-none mb-6 italic">
-                <textarea id="editor" oninput="updateStats()" placeholder="Type your raw thoughts here..." 
-                    class="w-full h-96 bg-transparent outline-none text-lg leading-relaxed resize-none"></textarea>
+                <textarea id="editor" oninput="updateStats()" placeholder="Draft your noise here..." 
+                    class="w-full h-[50vh] bg-transparent outline-none text-lg leading-relaxed resize-none font-medium"></textarea>
             </div>
-            <button onclick="generateAI()" id="refineBtn" class="w-full bg-indigo-600 text-white font-800 py-6 rounded-[24px] shadow-2xl shadow-indigo-500/40 hover:scale-[1.01] active:scale-95 transition">
-                REFINE WITH INTELLIGENCE
+            <button id="refineBtn" onclick="generateAI()" class="w-full bg-indigo-600 text-white font-800 py-6 rounded-[24px] shadow-2xl shadow-indigo-500/30 hover:bg-indigo-500 transition active:scale-95">
+                REFINE DRAFT
             </button>
         </div>
     </main>
 
-    <main id="page-about" class="page flex-grow max-w-3xl mx-auto w-full p-8 py-20 text-center">
-        <h2 class="serif text-6xl mb-8 italic">The Philosophy</h2>
-        <div class="space-y-6 text-slate-500 leading-relaxed text-lg">
-            <p>SignalWrite was born from the idea that <b>Anxiety</b> shouldn't stop <b>Communication</b>. Whether you are struggling to find the right words for a sensitive email or losing your voice in a 50,000-word novel, we are here.</p>
-            <p>Our "Anxiety Relief" mode specifically targets the stress of communication. It strips away aggressive tones, softens demands, and ensures your message is heard exactly how you intended—minus the panic.</p>
-        </div>
-        <button onclick="showPage('studio')" class="mt-12 bg-black text-white px-10 py-4 rounded-full font-bold">Back to Studio</button>
-    </main>
-
-    <div id="help-modal" class="hidden fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm flex items-center justify-center p-6">
-        <div class="bg-white dark:bg-slate-900 p-8 rounded-[32px] max-w-md w-full">
-            <h2 class="text-2xl font-bold mb-4">Getting Started</h2>
-            <ul class="text-sm space-y-4 text-slate-600">
-                <li>1. Get your key at <a href="https://aistudio.google.com/" target="_blank" class="text-indigo-600 font-bold">Google AI Studio</a>.</li>
-                <li>2. Click the <b>API KEY</b> button at the top of this site to save it.</li>
-                <li>3. If you're nervous about a text, use <b>Anxiety Relief</b> mode.</li>
-            </ul>
-            <button onclick="toggleModal('help-modal')" class="w-full mt-6 bg-indigo-600 text-white py-4 rounded-xl font-bold">Start Writing</button>
+    <div id="help-modal" class="hidden fixed inset-0 z-[300] bg-black/70 backdrop-blur-sm flex items-center justify-center p-6">
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-[40px] max-w-md w-full relative">
+            <button onclick="toggleModal('help-modal')" class="absolute top-6 right-6 text-slate-400">&times;</button>
+            <h2 class="serif text-3xl mb-4 italic">Signal Setup</h2>
+            <div class="text-sm space-y-4 text-slate-500">
+                <p>1. Get a key at <a href="https://aistudio.google.com/" target="_blank" class="text-indigo-600 underline">Google AI Studio</a>.</p>
+                <p>2. Paste it into the <b>API ACCESS</b> button menu.</p>
+                <p>3. Use <b>Anxiety Neutralizer</b> when you feel stressed about the tone of your message.</p>
+            </div>
+            <button onclick="toggleModal('help-modal')" class="w-full mt-8 bg-indigo-600 text-white py-4 rounded-2xl font-bold">Got it</button>
         </div>
     </div>
 
     <div id="settings" class="hidden fixed inset-0 z-[300] bg-black/80 backdrop-blur-md flex items-center justify-center p-6">
         <div class="bg-white dark:bg-slate-900 p-10 rounded-[40px] max-w-sm w-full">
-            <h2 class="serif text-3xl mb-6 italic">Connect Engine</h2>
-            <input type="password" id="apiKey" placeholder="Paste Gemini Key (AIza...)" class="w-full border p-4 rounded-2xl mb-4 dark:bg-black/20">
-            <button onclick="saveKey()" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold">Activate</button>
-            <button onclick="toggleModal('settings')" class="w-full mt-4 text-xs">Cancel</button>
+            <h2 class="serif text-3xl mb-6 italic">Connect Key</h2>
+            <input type="password" id="apiKey" placeholder="AIza..." class="w-full border dark:border-white/10 p-4 rounded-2xl mb-4 dark:bg-black/20 outline-none focus:border-indigo-500">
+            <button onclick="saveKey()" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold">Save Key</button>
+            <button onclick="toggleModal('settings')" class="w-full mt-4 text-[10px] uppercase font-bold tracking-widest opacity-40">Dismiss</button>
         </div>
     </div>
 
-    <footer class="p-12 border-t border-black/5 dark:border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-xs text-slate-400">© 2025 SignalWrite Studio</p>
-            <div class="flex gap-6">
-                <button onclick="showPage('about')" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600">Our Purpose</button>
-                <a href="mailto:louisnkan21@gmail.com" class="text-xs font-bold uppercase tracking-widest text-slate-500">Contact Developer</a>
+    <footer class="p-12 mt-20 border-t border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h4 class="font-800 text-lg mb-4">SignalWrite Labs.</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">A professional Single-Purpose Tool (SPT) for creators. Your data never leaves your device; your privacy is our architecture.</p>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h5 class="text-[10px] font-800 text-slate-400 uppercase tracking-widest">Support & Contact</h5>
+                <a href="mailto:louisnkan21@gmail.com" class="text-xs font-bold hover:text-indigo-600 transition">Contact Developer</a>
+                <a href="#" class="text-xs font-bold opacity-50">Privacy Manifesto</a>
+            </div>
+            <div class="md:text-right">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">System Status</p>
+                <div class="flex md:justify-end items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-xs font-bold">Engine Ready</span>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        let currentPurpose = 'creative';
-
+        // Theme Management
         function toggleTheme() {
-            const b = document.body;
-            b.classList.toggle('light'); b.classList.toggle('dark');
+            const body = document.body;
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+            }
         }
 
+        // Modal Logic
         function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
-        
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + pageId).classList.add('active');
-            window.scrollTo(0,0);
-        }
+        function closeNewsletter() { document.getElementById('newsletter').classList.remove('active'); }
 
-        function setPurpose(p) {
-            currentPurpose = p;
-            document.querySelectorAll('.purpose-btn').forEach(b => b.className = 'purpose-btn border border-black/10 py-3 rounded-xl text-xs font-bold');
-            document.getElementById('btn-' + p).className = 'purpose-btn bg-indigo-600 text-white py-3 rounded-xl text-xs font-bold';
-        }
-
-        function saveKey() {
-            const key = document.getElementById('apiKey').value;
-            if(key) {
-                localStorage.setItem('sw_key', key);
-                toggleModal('settings');
-                alert("Engine Active.");
-            }
-        }
-
-        async function generateAI() {
-            const key = localStorage.getItem('sw_key');
-            if(!key) { toggleModal('help-modal'); return; }
-
-            const content = document.getElementById('editor').value;
-            if(!content) return alert("Please enter some text.");
-            
-            const mode = document.getElementById('mode').value;
-            const btn = document.getElementById('refineBtn');
-            btn.innerText = "PROCESSING SIGNAL...";
-            btn.disabled = true;
-
-            const prompt = currentPurpose === 'anxiety' 
-                ? `Rewrite the following text to reduce anxiety, soften the tone, and make it more professional and calm, while preserving the main message: ${content}`
-                : `Act as a professional editor. Rewrite this ${mode} to be more polished and engaging: ${content}`;
-
-            try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                const data = await res.json();
-                if(data.candidates && data.candidates[0].content.parts[0].text) {
-                    document.getElementById('editor').value = data.candidates[0].content.parts[0].text;
-                } else {
-                    throw new Error();
-                }
-            } catch (e) {
-                alert("Connection Error. Please check your API key and Internet.");
-            } finally {
-                btn.innerText = "REFINE WITH INTELLIGENCE";
-                btn.disabled = false;
-            }
-        }
-
+        // Stat Tracker
         function updateStats() {
             const txt = document.getElementById('editor').value;
             document.getElementById('wordCount').innerText = txt.trim() ? txt.trim().split(/\s+/).length : 0;
         }
 
+        // API Security
+        function saveKey() {
+            const val = document.getElementById('apiKey').value;
+            if(val.trim() !== "") {
+                localStorage.setItem('sw_key', val);
+                alert("Key secured. AI engine ready.");
+                toggleModal('settings');
+            }
+        }
+
+        // The Engine (Fixed Logic)
+        async function generateAI() {
+            const key = localStorage.getItem('sw_key');
+            const editor = document.getElementById('editor');
+            const btn = document.getElementById('refineBtn');
+            const mode = document.getElementById('mode').value;
+
+            if(!key) {
+                toggleModal('help-modal');
+                return;
+            }
+
+            if(!editor.value.trim()) {
+                alert("The page is empty. Type something first.");
+                return;
+            }
+
+            btn.innerText = "Sifting Signal...";
+            btn.disabled = true;
+
+            const prompt = mode === 'anxiety' 
+                ? `Rewrite this text to neutralize anxiety. Make it calm, clear, and professional while preserving the core intent. Remove any aggressive or panicked undertones: ${editor.value}`
+                : `Professional refinement. Rewrite this text to be more polished as a ${mode}: ${editor.value}`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    editor.value = data.candidates[0].content.parts[0].text;
+                    updateStats();
+                } else {
+                    throw new Error("Invalid API Response");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error: The AI engine couldn't process that. Check your API key or connection.");
+            } finally {
+                btn.innerText = "REFINE DRAFT";
+                btn.disabled = false;
+            }
+        }
+
+        // Initialize Newsletter
         setTimeout(() => document.getElementById('newsletter').classList.add('active'), 5000);
-        function closeNewsletter() { document.getElementById('newsletter').classList.remove('active'); }
     </script>
 </body>
 </html>
