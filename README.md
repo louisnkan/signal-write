@@ -1,25 +1,25 @@
-# ghost-writer-
-# GHOSTWRITER 🖋️
-**The Quiet Refinement Engine.**
+# SIGNALWRITE 🛰️ 🖋️
+**The Minimalist AI Writing Studio for Professionals.**
 
-GhostWriter is a minimalist writing workspace designed to solve "Tone Anxiety." It allows you to dump raw, messy thoughts and refine them into professional, concise, or empathetic prose using private AI intelligence.
+SignalWrite is a high-performance, privacy-first creative suite built for long-form content. Whether you are drafting a novel, a technical article, or a high-stakes formal letter, SignalWrite uses Gemini 1.5 Intelligence to refine your raw thoughts into polished prose.
 
-## 👁️ Philosophy
-- **Zen Focus:** No clutter, just you and your words.
-- **Zero Exposure:** Your drafts and API keys never touch our servers.
-- **Contextual Intelligence:** Optimized for the high-stakes nuance of professional communication.
+## 🌟 Why SignalWrite?
+Most AI tools are cluttered and sell your data. SignalWrite is different:
+- **Zero Data Retention:** We don't have a database. Your drafts stay in your browser.
+- **BYOK Architecture:** You bring your own Gemini API key. You own your intelligence.
+- **Contextual Versatility:** Switch between Novel, Article, and Letter modes instantly.
+- **Bento UI:** A gorgeous, mobile-first design that stays out of your way.
 
-## 🛠️ Usage
-1.  **Mount the Vault:** Enter your Gemini API key in the settings.
-2.  **Draft Raw:** Write without self-censorship.
-3.  **Select Tone:** Professional, Concise, Empathetic, or Persuasive.
-4.  **Ghost It:** Let the engine refine the draft.
+## 🛠️ Features
+- **Live Word/Time Analysis:** Track your productivity in real-time.
+- **Tone Shifting:** Poetic, Academic, Professional, or Bold.
+- **Newsletter Integration:** Join a community of modern writers.
+- **Export Ready:** One-tap formatting for Slack and Email.
 
-## 🏗️ Architecture
-- **Engine:** Gemini 1.5 Flash
-- **Framework:** Tailwind JIT + Vanilla JS
-- **Security:** AES-style LocalStorage persistence (BYOK)
+## 🚀 Quick Start
+1. Visit [SignalWrite.com](https://your-link.github.io/signal-write)
+2. Open **Connect AI** and input your Gemini API Key.
+3. Start writing. The signal is yours.
 
 ---
-*Built for the US having tone anxiety in texts.*
-builder louis 💙 
+*Built with precision for the mobile web.*
