@@ -11,15 +11,15 @@ const SECRET_KEY = "AIzaSyCeh62ba_6SuUoFDbdVp4eIzBAfDtWYvjM";
 app.post('/refine', async (req, res) => {
     try {
         const { prompt, text } = req.body;
+        // FIXED URL: Using v1beta for better compatibility
         const response = await axios.post(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${SECRET_KEY}`,
             { contents: [{ parts: [{ text: `${prompt}: ${text}` }] }] }
         );
         res.json(response.data);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "API Failed" });
+        res.status(500).json({ error: "AI Engine Failed" });
     }
 });
 
-module.exports = app; 
+module.exports = app;
