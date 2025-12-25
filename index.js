@@ -7,8 +7,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// YOUR SECRET KEY - Put your actual Gemini Key between the quotes
-const SECRET_KEY = "PASTE_YOUR_GEMINI_API_KEY_HERE";
+// HARD-CODE YOUR KEY HERE
+const SECRET_KEY = "AIzaSyCeh62ba_6SuUoFDbdVp4eIzBAfDtWYvjM";
 
 app.post('/refine', async (req, res) => {
     const { prompt, text } = req.body;
