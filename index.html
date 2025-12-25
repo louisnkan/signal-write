@@ -13,13 +13,8 @@
         body.light-mode { background: #fdfdfd; color: #0f172a; }
         .glass { border: 1px solid rgba(128,128,128,0.1); backdrop-filter: blur(20px); }
         .dark-mode .glass { background: rgba(15, 23, 42, 0.8); }
-
         .type-sans { font-family: 'Plus Jakarta Sans', sans-serif !important; }
         .type-serif { font-family: 'Instrument Serif', serif !important; font-size: 1.4rem; }
-        .type-mono { font-family: 'JetBrains Mono', monospace !important; font-size: 0.9rem; }
-        .type-classic { font-family: 'Playfair Display', serif !important; }
-        .type-bold { font-family: 'Inter', sans-serif !important; font-weight: 900; }
-
         .full-overlay { transform: translateY(100%); position: fixed; inset: 0; z-index: 6000; display: none; background: #020617; }
         .full-overlay.active { transform: translateY(0); display: block; }
         .drawer { transform: translateY(100%); position: fixed; inset: 0; z-index: 5000; transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1); }
@@ -29,44 +24,6 @@
 </head>
 <body class="dark-mode min-h-screen flex flex-col p-4 md:p-8">
 
-    <div id="mission-page" class="full-overlay p-8 md:p-20 overflow-y-auto">
-        <div class="max-w-3xl mx-auto">
-            <button onclick="closePop('mission-page')" class="mb-12 text-[10px] font-800 uppercase bg-indigo-600 text-white px-8 py-4 rounded-full">← Return to Studio</button>
-            <h2 class="type-serif text-6xl mb-6 italic">SignalWrite Mission</h2>
-            <p class="text-xl text-slate-400 mb-8 leading-relaxed">SignalWrite is an elite cognitive tool designed to strip away the noise of anxiety and corporate ambiguity. Our purpose is to provide writers with a "signal" that is clear, powerful, and strategically sound.</p>
-            <div class="p-8 glass rounded-[40px] border-l-4 border-indigo-500">
-                <h4 class="font-800 uppercase text-xs mb-2">Community</h4>
-                <p class="text-sm opacity-60 mb-6">Join a circle of precision communicators. Share blueprints and influence the engine's evolution.</p>
-                <a href="https://yourcommunitylink.com" class="inline-block bg-white text-black px-6 py-3 rounded-2xl text-[10px] font-800 uppercase">Join the Signal</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="philosophy-page" class="full-overlay p-8 md:p-20 overflow-y-auto">
-        <div class="max-w-3xl mx-auto">
-            <button onclick="closePop('philosophy-page')" class="mb-12 text-[10px] font-800 uppercase bg-indigo-600 text-white px-8 py-4 rounded-full">← Studio</button>
-            <h2 class="type-serif text-6xl mb-12 italic">The Philosophy</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-slate-400">
-                <div class="p-6 glass rounded-3xl">
-                    <h5 class="text-indigo-500 font-800 uppercase mb-2">Professional Intelligence</h5>
-                    <p>Executive clarity. We remove "filler" words and weak verbs to ensure your message commands authority.</p>
-                </div>
-                <div class="p-6 glass rounded-3xl">
-                    <h5 class="text-emerald-500 font-800 uppercase mb-2">Anxiety Neutralizer</h5>
-                    <p>Psychological safety. We detect "over-explaining" and defensive tones, converting them into calm, assertive diplomacy.</p>
-                </div>
-                <div class="p-6 glass rounded-3xl">
-                    <h5 class="text-amber-500 font-800 uppercase mb-2">Journalism</h5>
-                    <p>Information density. We restructure drafts to put the "Lead" first, following the inverted pyramid style of world-class reporting.</p>
-                </div>
-                <div class="p-6 glass rounded-3xl">
-                    <h5 class="text-purple-500 font-800 uppercase mb-2">Creative Narrative</h5>
-                    <p>Atmospheric depth. We expand raw ideas into immersive prose with sensory details and literary rhythm.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <nav class="max-w-6xl mx-auto w-full flex justify-between items-center mb-10">
         <div onclick="openPop('mission-page')" class="branding">SIGNALWRITE<span class="text-indigo-600">.</span></div>
         <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">🌓</button>
@@ -74,14 +31,6 @@
 
     <main class="max-w-6xl mx-auto w-full flex-grow grid lg:grid-cols-12 gap-8">
         <aside class="lg:col-span-4 space-y-6">
-            <div class="glass p-6 rounded-[32px]">
-                <div class="grid grid-cols-2 gap-2">
-                    <button onclick="setType('type-sans')" class="py-3 glass rounded-xl text-[9px] font-bold uppercase">Sans</button>
-                    <button onclick="setType('type-serif')" class="py-3 glass rounded-xl text-[9px] font-bold uppercase">Serif</button>
-                    <button onclick="setType('type-classic')" class="py-3 glass rounded-xl text-[9px] font-bold uppercase">Classic</button>
-                    <button onclick="setType('type-mono')" class="py-3 glass rounded-xl text-[9px] font-bold uppercase">Mono</button>
-                </div>
-            </div>
             <div class="glass p-6 rounded-[32px] space-y-3">
                 <button onclick="setMode('professional', this)" class="mode-btn w-full text-left p-4 rounded-2xl border-2 border-indigo-600 bg-indigo-600/10 font-800 text-[11px] uppercase">Professional Intelligence</button>
                 <button onclick="setMode('anxiety', this)" class="mode-btn w-full text-left p-4 rounded-2xl border border-white/5 font-800 text-[11px] uppercase text-emerald-500">Anxiety Neutralizer</button>
@@ -104,26 +53,29 @@
 
     <footer class="max-w-6xl mx-auto w-full mt-12 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="flex gap-4">
-            <button onclick="toggleHistory()" class="px-6 py-3 glass rounded-full text-[10px] font-800 uppercase flex items-center gap-2"><span>↺</span> History</button>
+            <button onclick="toggleHistory()" class="px-6 py-3 glass rounded-full text-[10px] font-800 uppercase">History</button>
             <button onclick="openPop('philosophy-page')" class="px-6 py-3 glass rounded-full text-[10px] font-800 uppercase">Philosophy</button>
         </div>
         <div class="opacity-30 text-[9px] font-800 uppercase tracking-widest flex flex-wrap justify-center gap-6">
-            <div class="flex items-center gap-2"><span class="w-1 h-1 bg-emerald-500 rounded-full"></span> SSL Secure</div>
             <span>v2.2 Elite</span>
             <span>© 2025 SignalWrite Labs</span>
             <a href="mailto:louisnkan21@gmail.com" class="underline">Contact Developer</a>
         </div>
     </footer>
 
-    <div id="history-panel" class="drawer glass flex flex-col p-8 rounded-t-[40px]">
-        <div class="w-12 h-1.5 bg-white/10 rounded-full mx-auto mb-8" onclick="toggleHistory()"></div>
-        <div id="history-list" class="flex-grow overflow-y-auto space-y-4"></div>
-        <button onclick="toggleHistory()" class="mt-6 w-full py-5 bg-white/5 rounded-3xl font-800 text-[10px] uppercase">Close</button>
+    <div id="mission-page" class="full-overlay p-8 md:p-20 overflow-y-auto">
+        <div class="max-w-3xl mx-auto">
+            <button onclick="closePop('mission-page')" class="mb-12 text-[10px] font-800 uppercase bg-indigo-600 text-white px-8 py-4 rounded-full">← Back</button>
+            <h2 class="type-serif text-6xl mb-6 italic">Our Mission</h2>
+            <div class="p-8 glass rounded-[40px] border-l-4 border-indigo-500">
+                <a href="https://t.me/yourlink" class="bg-white text-black px-8 py-4 rounded-2xl text-[10px] font-800 uppercase">Join the Community</a>
+            </div>
+        </div>
     </div>
 
     <script>
-        // PASTE YOUR VERCEL LINK HERE (One-time setup)
-        const BRIDGE_URL = "https://signal-write.vercel.app";
+        // THIS IS THE LINE YOU NEED TO CHANGE
+        const BRIDGE_URL = "https://YOUR-VERCEL-PROJECT-NAME.vercel.app";
 
         let currentMode = 'professional';
         let historyData = JSON.parse(localStorage.getItem('sw_history_final') || '[]');
@@ -131,19 +83,14 @@
         function openPop(id) { document.getElementById(id).classList.add('active'); document.getElementById(id).classList.remove('hidden'); }
         function closePop(id) { document.getElementById(id).classList.remove('active'); document.getElementById(id).classList.add('hidden'); }
         function toggleTheme() { document.body.classList.toggle('dark-mode'); document.body.classList.toggle('light-mode'); }
-        function setType(f) { document.getElementById('editor').className = `${f} w-full flex-grow bg-transparent outline-none text-xl leading-relaxed resize-none`; }
-        function toggleHistory() { document.getElementById('history-panel').classList.toggle('active'); renderHistory(); }
-        function setMode(m, b) { currentMode = m; document.querySelectorAll('.mode-btn').forEach(x => x.classList.remove('border-indigo-600','bg-indigo-600/10')); b.classList.add('border-indigo-600','bg-indigo-600/10'); }
         function updateHUD() { const v = document.getElementById('editor').value.trim(); document.getElementById('wc').innerText = v ? v.split(/\s+/).length : 0; }
+        function setMode(m, b) { currentMode = m; document.querySelectorAll('.mode-btn').forEach(x => x.classList.remove('border-indigo-600','bg-indigo-600/10')); b.classList.add('border-indigo-600','bg-indigo-600/10'); }
 
         async function igniteAI() {
             const editor = document.getElementById('editor');
             const btn = document.getElementById('refineBtn');
-            const status = document.getElementById('status');
             if(!editor.value.trim()) return;
-
-            btn.innerText = "SIFTING...";
-            btn.disabled = true;
+            btn.innerText = "SIFTING..."; btn.disabled = true;
 
             try {
                 const response = await fetch(`${BRIDGE_URL}/refine`, {
@@ -152,18 +99,11 @@
                     body: JSON.stringify({ prompt: `Refine for ${currentMode}`, text: editor.value })
                 });
                 const data = await response.json();
-                const res = data.candidates[0].content.parts[0].text;
-                
-                historyData.unshift({ date: new Date().toLocaleTimeString(), text: res.substring(0, 50)+"...", full: res });
-                localStorage.setItem('sw_history_final', JSON.stringify(historyData));
-                editor.value = res;
-                status.innerText = "Signal Clear";
-            } catch (err) { alert("Intelligence Engine Sleep. Ensure Vercel Bridge is Live."); }
+                editor.value = data.candidates[0].content.parts[0].text;
+                document.getElementById('status').innerText = "Signal Clear";
+            } catch (err) { alert("Bridge Not Found. Please check the BRIDGE_URL in your code."); }
             finally { btn.innerText = "Elevate Signal"; btn.disabled = false; updateHUD(); }
         }
-
-        function renderHistory() { document.getElementById('history-list').innerHTML = historyData.map((item, i) => `<div onclick="restoreDraft(${i})" class="p-5 glass rounded-2xl cursor-pointer hover:bg-indigo-600/10 mb-2"><div class="text-[8px] font-bold opacity-30 mb-2 uppercase">${item.date}</div><div class="text-[11px] opacity-80">${item.text}</div></div>`).join(''); }
-        function restoreDraft(i) { document.getElementById('editor').value = historyData[i].full; toggleHistory(); updateHUD(); }
     </script>
 </body>
 </html>
